@@ -1,0 +1,1 @@
+3. As a login user, I want to see some music recommandations, so that I can explore more musics that I may also like.

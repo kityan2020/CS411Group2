@@ -1,0 +1,1 @@
+2. As a login user, I want to be able to manage my lists. I can create lists, add or delete musics.

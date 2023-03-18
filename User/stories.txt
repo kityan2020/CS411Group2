@@ -1,10 +1,8 @@
 1. As a login user, I want to search for some musics and add them to my lists. I want to search musics based on song's name, author name, music genres etc.
+   The idea behind this story is that we want users to do what they want to do with their music. There are over thousands of musics around the web so sometimes
+   it would be hard to only search for the songs that you liked. We want users to be able to search their songs that they like to listen to often and we do that by
+   having a search option for them to discover musics whether it's by the song name, author name, music genres, etc. If everything goes right, they would be able to
+   search their music based on their preferences. If something goes wrong, it would mean that the web frozed, lost internet, server crashed/delay, and maybe the wrong
+   song suggestion.
 
-2. As a login user, I want to be able to manage my lists. I can create lists, add or delete musics.
-
-3. As a login user, I want to see some music recommandations, so that I can explore more musics that I may also like.
-
-4. As a login user, I want to be able to leave comments on musics to communicate with other users and I want to be able to share musics to others.
-
-5. As a unlogin user, I want to register a user account to store the music that I like.
 

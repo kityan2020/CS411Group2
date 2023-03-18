@@ -1,0 +1,1 @@
+5. As a unlogin user, I want to register a user account to store the music that I like.
