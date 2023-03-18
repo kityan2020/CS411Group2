@@ -1,1 +1,5 @@
 4. As a login user, I want to be able to leave comments on musics to communicate with other users and I want to be able to share musics to others.
+What the user can do is that they can leave comments to a song that they've listened to such that it would communicate with others that may also like this song 
+as well. That way, we can allow other users to have the opportunity to talk more about what they may or may not like about a song. We feel like having the option to 
+share comments about the reasons why they like they song would help them be more engage in the trends of the song. That way, we can see how everyone reacts to a song so
+it can give people insight on what they would like to say when they listen to it. 
