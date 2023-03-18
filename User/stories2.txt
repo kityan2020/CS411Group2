@@ -1,1 +1,5 @@
-2. As a login user, I want to be able to manage my lists. I can create lists, add or delete musics.
+2. As a login user, I want to be able to manage my lists. I can create lists, add or delete musics. What the user can do here is that 
+it would allow users themselves to create a list of all the musics that they wanted to add to their playlist to listen to wherever and whenever
+they want to listen. Because we don't want to overcomplicate the users adding songs, we want to keep it simple and add the songs but not adding 
+other things like the authors name. We want to also allow users to delete musics as well if they don't like it or that they can move the music
+to another playlist. That way, users can be able to happy listening to just their music playlist and not listened to millions of songs.
