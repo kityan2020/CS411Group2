@@ -1,0 +1,10 @@
+1. As a login user, I want to search for some musics and add them to my lists. I want to search musics based on song's name, author name, music genres etc.
+
+2. As a login user, I want to be able to manage my lists. I can create lists, add or delete musics.
+
+3. As a login user, I want to see some music recommandations, so that I can explore more musics that I may also like.
+
+4. As a login user, I want to be able to leave comments on musics to communicate with other users and I want to be able to share musics to others.
+
+5. As a unlogin user, I want to register a user account to store the music that I like.
+
