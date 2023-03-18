@@ -1,1 +1,6 @@
-3. As a login user, I want to see some music recommandations, so that I can explore more musics that I may also like.
+3. As a login user, I want to see some music recommandations, so that I can explore more musics that I may also like. For this purpose,
+we want users to have the option some new music that they may like so that they can try listen to it. We think that users sometimes may get 
+bored on listening the same music over and over again so we want to offer them a chance to look up new songs to listen to. That way, the
+user will use this application more often because we help simplify it for them rather than search up the songs individually. We were thinking
+of music recommandations through identify what the users preferences are such that we can return a variety of songs that will fit into 
+what they like. 
