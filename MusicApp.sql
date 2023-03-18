@@ -1,3 +1,4 @@
+drop database MusicApp;
 create database MusicApp;
 
 use MusicApp;

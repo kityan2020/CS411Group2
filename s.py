@@ -1,9 +1,10 @@
 import mysql.connector
-
+#Alexis Password:dd020912#
+#Kits Password: 911Apexpredator
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="dd020912#"
+  password="911Apexpredator"
 )
 
 if mydb.is_connected():
@@ -12,5 +13,5 @@ mycursor = mydb.cursor()
 mycursor.execute("SELECT * FROM MusicApp.users")
 results = mycursor.fetchall()
 print(results)
-mycursor.execute('''INSERT INTO MusicApp.users (user_id, email, password) VALUES (%s, %s, %s)''', (3, "003@bu.edu", 1234))
+mycursor.execute('''INSERT INTO MusicApp.users (user_id, email, password) VALUES (%s, %s, %s)''', (4, "004@bu.edu", 1234))
 mydb.commit()
