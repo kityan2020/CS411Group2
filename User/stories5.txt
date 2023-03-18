@@ -1,1 +1,6 @@
-5. As a unlogin user, I want to register a user account to store the music that I like.
+5. As a unlogin user, I want to register a user account to store the music that I like. Having login credentials is very important 
+because it allows save all their data like their music playlist, recommendations. If they didn't have a login credentials, that means all
+their won't be saved. If everything goes right, they'll be able to create a login to save their content of their music. If something goes wrong where
+they have forgot their password, or haven't registered an account yet, we will provide an option for them to register a account, and reset their password.
+I think the most important thing is to have an account to save the users music data because it will be time consuming for them to just
+browse through musics and add it to playlist. 
