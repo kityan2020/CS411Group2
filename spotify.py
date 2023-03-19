@@ -66,6 +66,6 @@ def singleAlbum():
     print('Release date:', album_details['release_date'])
     print('Total tracks:', album_details['total_tracks'])
     return 
-print(len(Playlist()))
+print(Playlist())
 print(singleAlbum())
 
