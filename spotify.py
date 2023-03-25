@@ -37,7 +37,7 @@ def Playlist():
     # print list of track names
     for track in tracks:
         list.append(track['name'])
-    return list,albums
+    return list
 
 def singleAlbum():
     artist_name = 'BLACKPINK'
