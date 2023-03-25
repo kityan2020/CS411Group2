@@ -3,8 +3,8 @@ import requests
 url = 'https://app.ticketmaster.com/discovery/v2/events.json'
 api_key = 'qjdg4sTDUGRKNiGaLzjfxwoo3MoSBv0y'
 #we can get these from user input and through location
-artist_name = 'The Weeknd'
-location = 'New York'
+artist_name = input('Artist: ')
+location =  input('Location: ')
 
 # make GET request to API endpoint with parameters and API key
 response = requests.get(url, params={
@@ -12,6 +12,7 @@ response = requests.get(url, params={
     'keyword': artist_name,
     'city': location
 })
+print(response.json())
 if response.status_code == 200:
     events = response.json()
     if '_embedded' in events and 'events' in events['_embedded']:
