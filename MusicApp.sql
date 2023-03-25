@@ -25,5 +25,14 @@ CREATE TABLE in_pl(
     FOREIGN KEY (pl_id) REFERENCES playlists(pl_id)
 )
 
+CREATE TABLE search_history(
+    sh_id int4 AUTO_INCREMENT,
+    keyword VARCHAR(500),
+    user_id int4,
+    PRIMARY KEY (sh_id),
+    FOREIGN KEY user_id REFERENCES users(user_id)
+)
+--default playlist (liked songs)
+INSERT INTO MusicApp.playlists (pl_id,pl_name) VALUES (1,'liked songs');
 
 
