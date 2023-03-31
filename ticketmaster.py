@@ -12,7 +12,7 @@ response = requests.get(url, params={
     'keyword': artist_name,
     'city': location
 })
-print(response.json())
+
 if response.status_code == 200:
     events = response.json()
     if '_embedded' in events and 'events' in events['_embedded']:
