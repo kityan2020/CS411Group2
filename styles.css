@@ -1,0 +1,33 @@
+body {
+    background-color: #1DB954;
+  }
+  
+  h1 {
+    color: #191414;
+  }
+  
+  form {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  input[type=text] {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  button[type=submit] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #191414;
+    color: #1DB954;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
