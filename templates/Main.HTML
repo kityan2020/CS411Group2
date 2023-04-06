@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spotify Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>A Playlist of Your Favorite Artists!</h1>
+    <div>
+        <label for="search-input">Search for an Artist:</label>
+        <input type="text"  id="search-input" action="/api/search">
+        <button method = "post" id="search-button">Search</button>
+    </div>
+    <div id="results">
+        {% for track in tracks %}
+        <li>{{ track }}</li>
+        {% endfor %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
