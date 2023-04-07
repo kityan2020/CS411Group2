@@ -4,6 +4,8 @@ const resultsDiv = document.querySelector('#results');
 
 searchButton.addEventListener('click', async () => {
     const query = searchInput.value;
+    console.log(query)
+    
     const response = await fetch(`/api/search?q=${query}`);
     console.log(response.body)
     const data = await response.json();
@@ -12,6 +14,7 @@ searchButton.addEventListener('click', async () => {
 });
 
 function displayResults(data) {
+    
     const results = data;
     resultsDiv.innerHTML = '';
     if (results.length === 0) {
