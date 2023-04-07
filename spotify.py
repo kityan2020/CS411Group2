@@ -12,9 +12,9 @@ spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="e825b
 # for albums in albums:
 #     print(albums['name'])
 
-def Playlist():
+def Playlist(artist_name):
 #You can change the name to any artist you want
-    artist_name = 'BLACKPINK'
+    
     results = spotify.search(q='artist:' + artist_name, type='artist')
     artist_id = results['artists']['items'][0]['id']
 
@@ -66,6 +66,6 @@ def singleAlbum():
     print('Release date:', album_details['release_date'])
     print('Total tracks:', album_details['total_tracks'])
     return 
-print(Playlist())
-print(singleAlbum())
+# print(Playlist())
+# print(singleAlbum())
 

@@ -5,12 +5,14 @@ const resultsDiv = document.querySelector('#results');
 searchButton.addEventListener('click', async () => {
     const query = searchInput.value;
     const response = await fetch(`/api/search?q=${query}`);
+    console.log(response.body)
     const data = await response.json();
     displayResults(data);
+    console.log(data)
 });
 
 function displayResults(data) {
-    const results = data.artists.items;
+    const results = data;
     resultsDiv.innerHTML = '';
     if (results.length === 0) {
         resultsDiv.textContent = 'No results found';
@@ -19,7 +21,7 @@ function displayResults(data) {
     const ul = document.createElement('ul');
     results.forEach(result => {
         const li = document.createElement('li');
-        li.textContent = result.name;
+        li.textContent = result;
         ul.appendChild(li);
     });
     resultsDiv.appendChild(ul);

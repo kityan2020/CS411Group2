@@ -12,6 +12,9 @@
         <button id="search-button">Search</button>
     </div>
     <div id="results"></div>
+        {% for track in tracks %}
+        <li>{{ track }}</li>
+        {% endfor %}
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
