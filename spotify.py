@@ -1,10 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-<<<<<<< Updated upstream
-=======
 import flask
 from flask import Flask, Response, request, render_template, redirect, url_for, session
->>>>>>> Stashed changes
 
 # taylor_uri = 'spotify:artist:06HL4z0CvFAxyc27GXpf02'
 spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="e825b2eb9d73456fb74b50108dd1f8a3", client_secret="f06de69fc67c4ce185cb5deea4748141"))
@@ -17,13 +14,6 @@ spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="e825b
 # for albums in albums:
 #     print(albums['name'])
 
-<<<<<<< Updated upstream
-def Playlist():
-#You can change the name to any artist you want
-    artist_name = 'BLACKPINK'
-    results = spotify.search(q='artist:' + artist_name, type='artist')
-    artist_id = results['artists']['items'][0]['id']
-=======
 
 def Playlist(artist_name):
 #You can change the name to any artist you want
@@ -32,7 +22,6 @@ def Playlist(artist_name):
     
     artist_id = results['artists']['items'][0]['id']
     
->>>>>>> Stashed changes
 
     # get list of artist's albums
     albums = []
@@ -82,10 +71,5 @@ def singleAlbum():
     print('Release date:', album_details['release_date'])
     print('Total tracks:', album_details['total_tracks'])
     return 
-<<<<<<< Updated upstream
-print(Playlist())
-print(singleAlbum())
-=======
 
->>>>>>> Stashed changes
 
