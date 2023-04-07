@@ -1,0 +1,3 @@
+For our TechStack, we've decided to use HTML/CSS and Javascript for the Frontend because our groupmate was familiar with Frontend Development already so it was convenient for us to use it. For backend development, we decided to use Python and SQL because all of 
+liked the simplicity of Python syntax and SQL as some of us in the group are taking 460 as well so they've already recieve some knowledge 
+of SQL database. We used Flask as the framework to link our backend and frontend together. Overall, we chose these stacks because all of us were already familiar with it so we didn't have to learn much on the fly.
