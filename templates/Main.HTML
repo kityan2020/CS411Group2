@@ -11,9 +11,7 @@
         <input type="text"  id="search-input" action="/api/search">
         <button method = "post" id="search-button">Search</button>
     </div>
-
     <div id="results">
-
         {% for track in tracks %}
         <li>{{ track }}</li>
         {% endfor %}
