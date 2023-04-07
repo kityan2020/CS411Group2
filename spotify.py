@@ -2,7 +2,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import flask
 from flask import Flask, Response, request, render_template, redirect, url_for, session
-
+import random
 # taylor_uri = 'spotify:artist:06HL4z0CvFAxyc27GXpf02'
 spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="e825b2eb9d73456fb74b50108dd1f8a3", client_secret="f06de69fc67c4ce185cb5deea4748141"))
 
@@ -37,12 +37,17 @@ def Playlist(artist_name):
         results = spotify.album_tracks(album['id'])
         tracks.extend(results['items'])
 
-    list =[]
+    list1 = []
 
     # print list of track names
     for track in tracks:
-        list.append(track['name'])
-    return list
+        list1.append(track['name'])
+    songs = list(set(list1))
+    random.shuffle(songs)
+    if len(songs) < 20:
+        return songs
+    else: 
+        return songs[:20]
 
 def singleAlbum():
     artist_name = 'BLACKPINK'
@@ -72,3 +77,4 @@ def singleAlbum():
     print('Total tracks:', album_details['total_tracks'])
     return 
 
+print(Playlist('Blackpink'))
