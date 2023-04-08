@@ -19,12 +19,6 @@ def events(artist_name):
             events = events['_embedded']['events']
             
             for event in events:
-                # print('Name:', event['name'])
-                # print('Date:', event['dates']['start']['localDate'])
-                # # print('Time:', event['dates']['start']['localTime'])
-                # print('Venue:', event['_embedded']['venues'][0]['name'])
-                # print('Location:', event['_embedded']['venues'][0]['city']['name'])
-                # print('------------------------------')
                 event_list.append([event['name'],event['dates']['start']['localDate'],event['_embedded']['venues'][0]['name'],event['_embedded']['venues'][0]['city']['name']])
             
         else:
@@ -32,5 +26,4 @@ def events(artist_name):
     else:
         print('Error:Request failed with status code', response.status_code)
     return event_list[1:]
-# artist_name = input('Artist: ')
-print(events('Taylor Swift'))
+

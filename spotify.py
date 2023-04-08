@@ -77,4 +77,3 @@ def singleAlbum():
     print('Total tracks:', album_details['total_tracks'])
     return 
 
-print(Playlist('Blackpink'))

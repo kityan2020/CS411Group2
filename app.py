@@ -3,7 +3,7 @@ import spotify
 import ticketmaster
 import json
 import mysql.connector
-
+#Kits SQL Password = 911Apexpredator
 app = Flask(__name__)
 
 @app.route('/')
@@ -31,8 +31,6 @@ def search():
     query = request.args.get('q')
     results = spotify.Playlist(query)
     events=ticketmaster.events(query)
-    print(results)
-    print(events)
     if len(results)==0:
         results=["OOPS, NO SONGS FOUND"]
     if len(events)==0:
@@ -42,7 +40,7 @@ def search():
 @app.route('/add/song',methods=['POST','GET'])
 def add():
     song=request.args.get('s')
-    print(song)
+
     mycursor.execute('''INSERT INTO MusicApp.playlist (song_name, user_id) VALUES (%s, %s)''', (song, 1))
     mydb.commit()
     return "Song added successfully"
