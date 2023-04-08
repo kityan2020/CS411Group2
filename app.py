@@ -10,6 +10,9 @@ app = Flask(__name__)
 def index():
     return render_template('Main.html',  artiststuff= "")
 
+@app.route('/playlist')
+def displaypl():
+    return render_template('playlist.html')
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -20,9 +23,6 @@ mydb = mysql.connector.connect(
 if mydb.is_connected():
     print("Connection Established")
     mycursor = mydb.cursor()
-
-
-
 
 
 @app.route('/api/search', methods=['GET', 'POST'])
