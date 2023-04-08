@@ -1,10 +1,27 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request,url_for, redirect, render_template
 import spotify
 import ticketmaster
 import json
 import mysql.connector
 #Kits SQL Password = 911Apexpredator
 app = Flask(__name__)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # get the username and password from the form data
+        username = request.form['username']
+        password = request.form['password']
+        # check if the username and password are correct (replace this with your own authentication logic)
+        if username == 'admin' and password == 'password':
+            # if the login is successful, redirect to the main page
+            return redirect(url_for('Main.HTML'))
+        else:
+            # if the login is not successful, redirect back to the login page with an error message
+            return render_template('login.html', error='Invalid username or password')
+
+    # if the request method is GET, render the login page
+    return render_template('login.html')
 
 @app.route('/')
 def index():
@@ -17,7 +34,7 @@ def displaypl():
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="dd020912#"
+  password="911Apexpredator"
 )
 
 if mydb.is_connected():
