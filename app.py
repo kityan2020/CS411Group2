@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, render_template
 import spotify
+import ticketmaster
 import json
 
 app = Flask(__name__)
@@ -13,8 +14,10 @@ def search():
    
     query = request.args.get('q')
     results = spotify.Playlist(query)
+    events=ticketmaster.events(query)
     print(results)
-    return jsonify(results)
+    print(events)
+    return jsonify(["Here are the songs:"]+[" "]+results+[" "]+["Here are the events:"]+[" "]+events)
 
 if __name__ == '__main__':
     app.run()

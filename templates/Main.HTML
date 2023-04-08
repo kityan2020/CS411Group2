@@ -11,6 +11,17 @@
         <input type="text"  id="search-input" action="/api/search">
         <button method = "post" id="search-button">Search</button>
     </div>
+
+
+    <div>
+        <label for="search-input">Enter the name of the songs you want to add to a playlist:</label>
+        <input type="text"  id="search-input" action="/api/search">
+        <button method = "post" id="search-button">Submit</button>
+    </div>
+
+
+
+
     <div id="results">
         {% for track in tracks %}
         <li>{{ track }}</li>
