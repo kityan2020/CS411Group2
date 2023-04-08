@@ -43,7 +43,7 @@ def search():
 def add():
     song=request.args.get('s')
     print(song)
-    mycursor.execute('''INSERT INTO MusicApp.playlist (song_name, user_id) VALUES (%s, %s)''', (song, 0))
+    mycursor.execute('''INSERT INTO MusicApp.playlist (song_name, user_id) VALUES (%s, %s)''', (song, 1))
     mydb.commit()
     return "Song added successfully"
 
