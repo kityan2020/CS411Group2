@@ -39,12 +39,13 @@ def search():
         events=["OOPS, NO EVENTS FOUND"]
     return jsonify(["Here are the songs:"]+[" "]+results+[" "]+["Here are the events:"]+[" "]+events)
 
-@app.route('/add/song',methods=['POST'])
+@app.route('/add/song',methods=['POST','GET'])
 def add():
-    song=request.args.get('q')
-    mycursor.execute('''INSERT INTO MusicApp.playlist (song_name,user_id) VALUES (%s, %s, %s)''', (song,0))
+    song=request.args.get('s')
+    print(song)
+    mycursor.execute('''INSERT INTO MusicApp.playlist (song_name, user_id) VALUES (%s, %s)''', (song, 0))
     mydb.commit()
-    return
+    return "Song added successfully"
 
 
 
