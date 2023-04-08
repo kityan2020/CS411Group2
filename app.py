@@ -17,7 +17,17 @@ def search():
     events=ticketmaster.events(query)
     print(results)
     print(events)
+    if len(results)==0:
+        results=["OOPS, NO SONGS FOUND"]
+    if len(events)==0:
+        events=["OOPS, NO EVENTS FOUND"]
     return jsonify(["Here are the songs:"]+[" "]+results+[" "]+["Here are the events:"]+[" "]+events)
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run()
