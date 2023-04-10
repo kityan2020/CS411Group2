@@ -60,9 +60,9 @@ def add():
 
     mycursor.execute('''INSERT INTO MusicApp.playlist (song_name, user_id) VALUES (%s, %s)''', (song, 1))
     mydb.commit()
-    return "Song added successfully"
+    return "Song added successfully!"
 
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

@@ -3,8 +3,16 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import flask
 from flask import Flask, Response, request, render_template, redirect, url_for, session
 import random
+
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+
 # taylor_uri = 'spotify:artist:06HL4z0CvFAxyc27GXpf02'
-spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="e825b2eb9d73456fb74b50108dd1f8a3", client_secret="f06de69fc67c4ce185cb5deea4748141"))
+spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET))
 
 # results = spotify.artist_top_tracks(taylor_uri, 'US')
 # albums = results['items']
