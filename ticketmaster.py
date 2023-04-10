@@ -1,7 +1,12 @@
 import requests
+
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 # define API endpoint and parameters
 url = 'https://app.ticketmaster.com/discovery/v2/events.json'
-api_key = 'qjdg4sTDUGRKNiGaLzjfxwoo3MoSBv0y'
+api_key = os.getenv("TICKET_MASTER")
 #we can get these from user input and through location
 # artist_name = input('Artist: ')
 # location =  input('Location: ')
