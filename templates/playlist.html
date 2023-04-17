@@ -3,5 +3,15 @@
     Here is your playlist
 </h2>
 
+{% if songs %}
+    <h2>Here are all songs </h2>
+    {% for song in songs %}
+    <li>{{song[0]}}<br>
+    {% endfor %}
+{% else %}
+    <p> OOPS! you do not have any music in playlist </p> 
+{% endif %}
+
+
 <a href='/Main'>back to home page</a>
 </body>
