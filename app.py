@@ -1,10 +1,12 @@
-from flask import Flask, jsonify, request, url_for, redirect, render_template
+from flask import Flask, jsonify, request, url_for, redirect, render_template, session
 import spotify
 import ticketmaster
 import json
 import mysql.connector
+import os
 #Kits SQL Password = 911Apexpredator
 app = Flask(__name__)
+app.secret_key = "This is a SECRET_KEY"
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -21,6 +23,7 @@ def login():
         if real_password_int==password:
             # if the login is successful, redirect to the main page
             # print("redirect to main")
+            session['email'] = username
             return render_template('Main.HTML')
 
         else:
@@ -47,6 +50,7 @@ def register():
         return redirect(url_for('register'))
     mycursor.execute('''INSERT INTO MusicApp.users(email,password) VALUES (%s, %s)''', (email, password))
     mydb.commit()
+    session['email'] = email
     return render_template('Main.HTML')
 
 
@@ -56,12 +60,21 @@ def playlist():
 
 @app.route('/playlist')
 def displaypl():
-    return render_template('playlist.html')
+    email=session.get('email')
+    print(email)
+    mycursor.execute("SELECT user_id FROM MusicApp.users WHERE email = '{0}'".format(email))
+    uid= mycursor.fetchone()
+    uid_int=uid[0]
+    print(uid_int)
+    mycursor.execute("SELECT song_name FROM MusicApp.playlist WHERE user_id = '{0}'".format(uid_int))
+    songs=mycursor.fetchall()
+    print(songs)
+    return render_template('playlist.html',songs=songs)
 
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="911Apexpredator"
+  password="dd020912#"
 )
 
 if mydb.is_connected():
@@ -85,8 +98,11 @@ def search():
 @app.route('/add/song',methods=['POST','GET'])
 def add():
     song=request.args.get('s')
-
-    mycursor.execute('''INSERT INTO MusicApp.playlist (song_name, user_id) VALUES (%s, %s)''', (song, 1))
+    email=session.get('email')
+    mycursor.execute("SELECT user_id FROM MusicApp.users WHERE email = '{0}'".format(email))
+    uid= mycursor.fetchone()
+    uid_int=uid[0]
+    mycursor.execute('''INSERT INTO MusicApp.playlist (song_name, user_id) VALUES (%s, %s)''', (song, uid_int))
     mydb.commit()
     return "Song added successfully!"
 
