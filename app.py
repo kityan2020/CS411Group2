@@ -66,16 +66,18 @@ def register():
 
 @app.route('/logout')
 def logout():
-    token_info = session.get('token')
-    print(token_info)
+    token_info = session.get('token_info')
+    print("##########",token_info)
     if token_info:
-        session.pop('token', None)
-
+        session.clear()
+        print("session:",session)
+     
     return render_template('logout.html')
 
 @app.route('/login')
 def oauth():
-    print('hello')
+    print('start oauth login')
+    session.clear()
     sp_oauth = create_spotify_oauth()
     author_url = sp_oauth.get_authorize_url()
     return redirect(author_url)
@@ -84,7 +86,7 @@ def create_spotify_oauth():
     return SpotifyOAuth(
         client_id=CLIENT_ID,
         client_secret=CLIENT_SECRET,
-        redirect_uri=url_for('playlist',_external=True),
+        redirect_uri=url_for('callback',_external=True),
         scope="user-library-read",
     )
 
@@ -94,25 +96,23 @@ def switchtologin():
 
 @app.route('/callback')
 def callback():
-    sp_oauth=SpotifyOAuth(
-        client_id=CLIENT_ID,
-        client_secret=CLIENT_SECRET,
-        redirect_uri=url_for('playlist',_external=True),
-        scope="user-library-read",
-    )
+    sp_oauth=create_spotify_oauth()
     code = request.args.get('code')
-    token_info = sp_oauth.get_access_token(code)
-    print(token_info,"toekn info added to session")
-    session['token_info'] = token_info
-    return redirect('/login2')
-@app.route('/login2')
-def login2():
-    token=session.get('token_info')
+    print(code)
+    token = sp_oauth.get_access_token(code,check_cache=False)
+    print(token,"toekn info added to session")
+    session['token_info'] = token
+    print("session:",session)
     if not token:
         return redirect('/login')
     else:
-        access_token = token['access_token']
         return render_template('Main.html')
+
+    # return redirect('/login2')
+
+# @app.route('/login2')
+# def login2():
+    
 
 @app.route('/Main')
 def playlist():
