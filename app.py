@@ -17,7 +17,7 @@ CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 
-@app.route('/backend_function', methods=['GET', 'POST'])
+@app.route('/login_function', methods=['GET', 'POST'])
 def backend_function():
     function_name = request.form['function']
     if function_name == 'login':
@@ -65,6 +65,16 @@ def register():
     session['email'] = email
     return render_template('Main.HTML')
 
+@app.route('/logout')
+def logout():
+    token_info = session.get('token_info')
+
+    if token_info:
+        session.pop('token_info', None)
+
+
+
+    return render_template('logout.html')
 
 @app.route('/login')
 def oauth():
@@ -102,7 +112,7 @@ def displaypl():
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="911Apexpredator"
+  password="dd020912#"
 )
 
 if mydb.is_connected():
