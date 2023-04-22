@@ -2,10 +2,12 @@
 <html>
 <head>
   <title>Login Page</title>
+  
 </head>
 <body>
   <h1>Login Page</h1>
-  <form action="/login" method="POST">
+  <form action="{{url_for('backend_function')}}" method="POST">
+    <input type="hidden" name="function" value="login">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username"><br>
 
@@ -13,12 +15,34 @@
     <input type="password" id="password" name="password"><br>
 
     <button type="submit">Login</button>
+    
   </form>
 
+  <!-- <form form action="/callback" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br>
+
+    <button type="submit">Spotify Login</button>
+  </form> -->
+
+</div>
+<body>
+  <form action="{{url_for('backend_function')}}" method="POST">
+    <input type="hidden" name="function" value="oauth">
+    <button type="submit">Login with Spotify</button>
+    
+  </form>
+  </body>
+ 
+  
   {%if error%}
 <h1>OOPS! There are some went wrong, please try again</a></h1>
 {% endif %}
 
 
 </body>
+<script src="script.js"></script>
 </html>
