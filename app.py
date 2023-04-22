@@ -17,7 +17,13 @@ CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/backend_function', methods=['GET', 'POST'])
+def backend_function():
+    function_name = request.form['function']
+    if function_name == 'login':
+        return login()
+    elif function_name == 'oauth':
+        return oauth()
 def login():
     if request.method == 'POST':
         # get the username and password from the form data
@@ -60,19 +66,20 @@ def register():
     return render_template('Main.HTML')
 
 
-# @app.route('/')
-# def start():
-#     sp_oauth = create_spotify_oauth()
-#     author_url = sp_oauth.get_authorize_url()
-#     return redirect(author_url)
-
-# def create_spotify_oauth():
-#     return SpotifyOAuth(
-#         client_id=CLIENT_ID,
-#         client_secret=CLIENT_SECRET,
-#         redirect_uri=url_for('register',_external=True),
-#         scope="user-library-read",
-#     )
+@app.route('/login')
+def oauth():
+    print('hello')
+    sp_oauth = create_spotify_oauth()
+    author_url = sp_oauth.get_authorize_url()
+    return redirect(author_url)
+@app.route('/login')
+def create_spotify_oauth():
+    return SpotifyOAuth(
+        client_id=CLIENT_ID,
+        client_secret=CLIENT_SECRET,
+        redirect_uri=url_for('playlist',_external=True),
+        scope="user-library-read",
+    )
 
 @app.route('/Main')
 def playlist():
