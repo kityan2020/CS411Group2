@@ -18,7 +18,7 @@ CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 
 @app.route('/login_function', methods=['GET', 'POST'])
-def backend_function():
+def login_function():
     function_name = request.form['function']
     if function_name == 'login':
         return login()
@@ -30,13 +30,12 @@ def login():
         username = request.form['username']
         password = request.form['password']
         # print(username,password)
-        # check if the username and password are correct (replace this with your own authentication logic)
         mycursor.execute("SELECT password FROM MusicApp.users WHERE email = '{0}'".format(username))
         real_password= mycursor.fetchone()
         real_password_int=str(int(real_password[0]))
         # print(real_password,real_password_int,real_password_int==password)
         if real_password_int==password:
-            # if the login is successful, redirect to the main page
+            # if the passwords are the same, then login
             # print("redirect to main")
             session['email'] = username
             return render_template('Main.HTML')
@@ -67,12 +66,10 @@ def register():
 
 @app.route('/logout')
 def logout():
-    token_info = session.get('token_info')
-
+    token_info = session.get('token')
+    print(token_info)
     if token_info:
-        session.pop('token_info', None)
-
-
+        session.pop('token', None)
 
     return render_template('logout.html')
 
@@ -90,6 +87,32 @@ def create_spotify_oauth():
         redirect_uri=url_for('playlist',_external=True),
         scope="user-library-read",
     )
+
+@app.route('/switchtologin')
+def switchtologin():
+    return render_template('login.html')
+
+@app.route('/callback')
+def callback():
+    sp_oauth=SpotifyOAuth(
+        client_id=CLIENT_ID,
+        client_secret=CLIENT_SECRET,
+        redirect_uri=url_for('playlist',_external=True),
+        scope="user-library-read",
+    )
+    code = request.args.get('code')
+    token_info = sp_oauth.get_access_token(code)
+    print(token_info,"toekn info added to session")
+    session['token_info'] = token_info
+    return redirect('/login2')
+@app.route('/login2')
+def login2():
+    token=session.get('token_info')
+    if not token:
+        return redirect('/login')
+    else:
+        access_token = token['access_token']
+        return render_template('Main.html')
 
 @app.route('/Main')
 def playlist():
