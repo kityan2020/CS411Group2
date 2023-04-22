@@ -4,9 +4,18 @@ import ticketmaster
 import json
 import mysql.connector
 import os
+import spotipy.util as util
+from spotipy.oauth2 import SpotifyOAuth
+import secrets
 #Kits SQL Password = 911Apexpredator
+secret_key = secrets.token_hex(16)
+print(secret_key)
 app = Flask(__name__)
-app.secret_key = "This is a SECRET_KEY"
+app.secret_key = secret_key
+app.config['SESSION_COOKIE_NAME'] = 'Kits Cookie'
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -36,9 +45,6 @@ def login():
 @app.route('/')
 def start():
     return render_template('register.html')
-
-
-
 @app.route('/', methods=['GET', 'POST'])
 def register():
     try:
@@ -47,16 +53,31 @@ def register():
         print(email,password)
     except:
         print("please make sure enter all information")
-        return redirect(url_for('register'))
+        return redirect(url_for('start'))
     mycursor.execute('''INSERT INTO MusicApp.users(email,password) VALUES (%s, %s)''', (email, password))
     mydb.commit()
     session['email'] = email
     return render_template('Main.HTML')
 
 
+# @app.route('/')
+# def start():
+#     sp_oauth = create_spotify_oauth()
+#     author_url = sp_oauth.get_authorize_url()
+#     return redirect(author_url)
+
+# def create_spotify_oauth():
+#     return SpotifyOAuth(
+#         client_id=CLIENT_ID,
+#         client_secret=CLIENT_SECRET,
+#         redirect_uri=url_for('register',_external=True),
+#         scope="user-library-read",
+#     )
+
 @app.route('/Main')
 def playlist():
     return render_template('Main.html')
+
 
 @app.route('/playlist')
 def displaypl():
@@ -74,7 +95,7 @@ def displaypl():
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="dd020912#"
+  password="911Apexpredator"
 )
 
 if mydb.is_connected():
