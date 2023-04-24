@@ -33,7 +33,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         if username=="" or password=="":
-            return render_template('login.html', error='Invalid username or password')
+            return render_template('login.html', error1=True)
         else:# print(username,password)
             mycursor.execute("SELECT password FROM MusicApp.users WHERE email = '{0}'".format(username))
             real_password= mycursor.fetchone()
@@ -47,7 +47,7 @@ def login():
 
         else:
             # if the login is not successful, redirect back to the login page with an error message
-            return render_template('login.html', error='Invalid username or password')
+            return render_template('login.html', error2=True)
 
     # if the request method is GET, render the login page
     return render_template('login.html')
@@ -71,7 +71,7 @@ def register():
     email= mycursor.fetchone()
     e=email[0]
     if e!=None:
-        return redirect(url_for('start'))
+        return render_template('register.html', error=True)
     mycursor.execute('''INSERT INTO MusicApp.users(email,password) VALUES (%s, %s)''', (email, password))
     mydb.commit()
     session['email'] = email

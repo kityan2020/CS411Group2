@@ -38,8 +38,12 @@
   </body>
  
   
-  {%if error%}
-<h1>OOPS! There are some went wrong, please try again</a></h1>
+  {%if error1%}
+<h1>OOPS! empty username or password</a></h1>
+{% endif %}
+
+{%if error2%}
+<h1>OOPS! not matched username and password</a></h1>
 {% endif %}
 
 
