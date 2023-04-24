@@ -8,6 +8,7 @@ import spotipy.util as util
 from spotipy.oauth2 import SpotifyOAuth
 import secrets
 #Kits SQL Password = 911Apexpredator
+
 secret_key = secrets.token_hex(16)
 print(secret_key)
 app = Flask(__name__)
@@ -72,7 +73,7 @@ def logout():
         session.clear()
         print("session:",session)
      
-    return render_template('logout.html')
+    return render_template('login.html')
 
 @app.route('/login')
 def oauth():
@@ -81,6 +82,7 @@ def oauth():
     sp_oauth = create_spotify_oauth()
     author_url = sp_oauth.get_authorize_url()
     return redirect(author_url)
+
 @app.route('/login')
 def create_spotify_oauth():
     return SpotifyOAuth(
@@ -88,6 +90,7 @@ def create_spotify_oauth():
         client_secret=CLIENT_SECRET,
         redirect_uri=url_for('callback',_external=True),
         scope="user-library-read",
+        show_dialog=True
     )
 
 @app.route('/switchtologin')
@@ -100,19 +103,13 @@ def callback():
     code = request.args.get('code')
     print(code)
     token = sp_oauth.get_access_token(code,check_cache=False)
-    print(token,"toekn info added to session")
+    print(token,"token info added to session")
     session['token_info'] = token
     print("session:",session)
     if not token:
         return redirect('/login')
     else:
         return render_template('Main.html')
-
-    # return redirect('/login2')
-
-# @app.route('/login2')
-# def login2():
-    
 
 @app.route('/Main')
 def playlist():
@@ -135,7 +132,7 @@ def displaypl():
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="dd020912#"
+  password="911Apexpredator"
 )
 
 if mydb.is_connected():
