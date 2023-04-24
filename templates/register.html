@@ -20,7 +20,9 @@
             <input type="submit" />
         </form>
 
-
+        {%if error%}
+        <h1>OOPS! the email entered has already been registered</a></h1>
+        {% endif %}
 <a href='/switchtologin'>Already has an account?login click here</a>
 
 <script src="script.js"></script>
