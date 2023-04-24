@@ -7,6 +7,8 @@ import os
 import spotipy.util as util
 from spotipy.oauth2 import SpotifyOAuth
 import secrets
+import requests
+import spotipy
 #Kits SQL Password = 911Apexpredator
 
 secret_key = secrets.token_hex(16)
@@ -30,10 +32,12 @@ def login():
         # get the username and password from the form data
         username = request.form['username']
         password = request.form['password']
-        # print(username,password)
-        mycursor.execute("SELECT password FROM MusicApp.users WHERE email = '{0}'".format(username))
-        real_password= mycursor.fetchone()
-        real_password_int=str(int(real_password[0]))
+        if username=="" or password=="":
+            return render_template('login.html', error='Invalid username or password')
+        else:# print(username,password)
+            mycursor.execute("SELECT password FROM MusicApp.users WHERE email = '{0}'".format(username))
+            real_password= mycursor.fetchone()
+            real_password_int=str(int(real_password[0]))
         # print(real_password,real_password_int,real_password_int==password)
         if real_password_int==password:
             # if the passwords are the same, then login
@@ -57,8 +61,16 @@ def register():
         email = request.form.get('email')
         password = request.form.get('password')
         print(email,password)
+      
     except:
         print("please make sure enter all information")
+        return redirect(url_for('start'))
+    if email=="" or password=="":
+        return redirect(url_for('start'))
+    mycursor.execute("SELECT email FROM MusicApp.users WHERE email = '{0}'".format(email))
+    email= mycursor.fetchone()
+    e=email[0]
+    if e!=None:
         return redirect(url_for('start'))
     mycursor.execute('''INSERT INTO MusicApp.users(email,password) VALUES (%s, %s)''', (email, password))
     mydb.commit()
@@ -109,6 +121,20 @@ def callback():
     if not token:
         return redirect('/login')
     else:
+        spotify=spotipy.Spotify(auth=token['access_token'])
+        user=spotify.current_user()
+        userid=user['id']
+        print("userid:",userid,type(userid))
+    
+        mycursor.execute("SELECT email FROM MusicApp.users WHERE email = '{0}'".format((userid),))
+        e = mycursor.fetchone()
+        print(e)
+        if e == None:
+            mycursor.execute('''INSERT INTO MusicApp.users(email, password) VALUES (%s,%s)''', ((userid),0))
+            mydb.commit()
+            session['email'] = str(userid)
+        else:
+            session['email'] = e[0]
         return render_template('Main.html')
 
 @app.route('/Main')
@@ -132,7 +158,7 @@ def displaypl():
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="911Apexpredator"
+  password="dd020912#"
 )
 
 if mydb.is_connected():
