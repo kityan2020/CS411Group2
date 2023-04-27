@@ -90,7 +90,7 @@ def logout():
 @app.route('/login')
 def oauth():
     print('start oauth login')
-    session.clear()
+    # session.clear()
     sp_oauth = create_spotify_oauth()
     author_url = sp_oauth.get_authorize_url()
     return redirect(author_url)
@@ -182,13 +182,15 @@ def search():
 @app.route('/add/song',methods=['POST','GET'])
 def add():
     song=request.args.get('s')
+    if song=="":
+        return render_template('Main.html',error1=True)
     email=session.get('email')
     mycursor.execute("SELECT user_id FROM MusicApp.users WHERE email = '{0}'".format(email))
     uid= mycursor.fetchone()
     uid_int=uid[0]
     mycursor.execute('''INSERT INTO MusicApp.playlist (song_name, user_id) VALUES (%s, %s)''', (song, uid_int))
     mydb.commit()
-    return "Song added successfully!"
+    return render_template('Main.html',message1=True)
 
 
 

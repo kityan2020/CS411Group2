@@ -30,7 +30,13 @@
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 
+    {%if error1%}
+    <h1>OOPS! empty song name</a></h1>
+    {% endif %}
    
+    {%if message1%}
+    <h1>add the song Successfully!</a></h1>
+    {% endif %}
 
 
 </body>
