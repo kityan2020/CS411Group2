@@ -85,7 +85,7 @@ def logout():
         session.clear()
         print("session:",session)
      
-    return render_template('login.html')
+    return render_template('register.html')
 
 @app.route('/login')
 def oauth():
