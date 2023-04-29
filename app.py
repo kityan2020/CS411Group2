@@ -37,6 +37,7 @@ def login():
         else:# print(username,password)
             mycursor.execute("SELECT password FROM MusicApp.users WHERE email = '{0}'".format(username))
             real_password= mycursor.fetchone()
+            print(real_password)
             real_password_int=str(int(real_password[0]))
         # print(real_password,real_password_int,real_password_int==password)
         if real_password_int==password:
@@ -68,8 +69,9 @@ def register():
     if email=="" or password=="":
         return redirect(url_for('start'))
     mycursor.execute("SELECT email FROM MusicApp.users WHERE email = '{0}'".format(email))
-    email= mycursor.fetchone()
-    e=email[0]
+    ifemail= mycursor.fetchone()
+    print("email:",ifemail,"password",password)
+    e=ifemail
     if e!=None:
         return render_template('register.html', error=True)
     mycursor.execute('''INSERT INTO MusicApp.users(email,password) VALUES (%s, %s)''', (email, password))
@@ -158,7 +160,7 @@ def displaypl():
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="911Apexpredator"
+  password="dd020912#"
 )
 
 if mydb.is_connected():
