@@ -12,7 +12,7 @@ import spotipy
 #Kits SQL Password = 911Apexpredator
 
 secret_key = secrets.token_hex(16)
-print(secret_key)
+#print(secret_key)
 app = Flask(__name__)
 app.secret_key = secret_key
 app.config['SESSION_COOKIE_NAME'] = 'Kits Cookie'
@@ -160,7 +160,7 @@ def displaypl():
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="dd020912#"
+  password="911Apexpredator"
 )
 
 if mydb.is_connected():
